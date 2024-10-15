@@ -1,0 +1,52 @@
+*{
+    font-family: "Afacad Flux", sans-serif;
+}
+.recipe-container{
+    border: solid; 
+    padding:2%;
+    width:96%;
+}
+body{
+    background-color: floralwhite;
+    padding: 2%;
+}
+.biglink{
+    font-size: 50px;
+    color: black;
+}
+#bigtitle{
+    font-size: 70px;
+}
+.image{
+    border-radius: 30px;
+    margin: 0 25%;
+    width: 50%;
+}
+.sub-ingredient{
+    display: inline-block;
+    vertical-align: top;
+}
+.descpara{
+    width: 70%
+}
+.red{
+    color: red;
+}
+.brown{
+    color: brown;
+}
+.desc{
+    text-align: center
+}
+h1{
+    font-family: "Satisfy", cursive;
+}
+b{
+    font-weight: 800;
+}
+#smile{
+    height: 500px;
+}
+.btn{
+    margin-bottom: 2%
+}
