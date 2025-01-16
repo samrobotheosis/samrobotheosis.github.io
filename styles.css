@@ -1,52 +1,219 @@
-*{
-    font-family: "Afacad Flux", sans-serif;
+/* Selects everything, puts new font w/ weight and default color to white, as most containers are dark */
+* {
+    font-family: "Inter", serif;
+    font-weight: 400;
+    color: white;
 }
-.recipe-container{
-    border: solid; 
-    padding:2%;
-    width:96%;
+/* selects body, sets background color to dark blue (for aesthetics) */
+body {
+    background-color: #07112e;
 }
-body{
-    background-color: floralwhite;
-    padding: 2%;
+/* Selects all h1 tags (which is really just the main title) and gives them an adapting font size and aligns it to center of screen */
+h1 {
+    font-size: 4vw;
+    text-align: center;
 }
-.biglink{
-    font-size: 50px;
+/* contains all content of the page besides bottom buttons. display flex and flex direction column to make large items inside adaptable to big screen sizes.
+ * Overflow-x: hidden hides the filter as the text extends off-screen*/
+#page {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+/* Navbar is display: flex in horizontal direction to have adaptable navitems. bg color is lighter than background. 
+ * padding puts space between the items and the edge of the screen, height is set so it will stay usable on shorter screens
+ * navitems are aligned to center, and overflow on the x axis scrolls so one can scroll to new items without scrolling the whole screen */
+#navbar {
+    display: flex;
+    background-color: #0c1b48;
+    padding: 10px;
+    height: 100px;
+    align-items: center;
+    overflow-x: scroll;
+}
+/* min-width so the text won's get to thin, set font size so it stays visible on multiple screens
+ * padding to put space between text and edge, margin-right to have space between items,
+ * border radius to round the corners, so when js sets a background color for the selected one, it will look better*/
+.navitem {
+    min-width: 150px;
+    font-size: 28px;
+    padding: 6px;
+    margin-right: 5vw;
+    border-radius: 15px;
+}
+/* font color goes light blue when hovered over */
+.navitem:hover {
+    color: #82a0ff;
+}
+/* all content other than buttons, title, and navbar 
+ * this flex is between the clubs, which are all the schedules, and the filter*/
+#maincontent {
+    display: flex;
+}
+/* contains all the club schedules
+ * width takes up all available space, to push filter out
+ * display flex to make schedules adaptable and horizontal
+ * wrap allows schedules to go to next line if there is no more available space
+ * margin puts a little bit of dark space between the schedules and the edge */
+#clubs {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0.5vw;
+}
+/* width is 0 to hide it completely
+ * whitespace nowrap allows text to not unwrap when it is expanded, which looks weird
+ * bg color is lighter
+ * overflow will scroll if neccecary so the whole screen doesn't have to */
+#filter {
+    width: 0;
+    white-space: nowrap;
+    background-color: #82a0ff;
+    overflow: scroll;
+}
+/* title for filter, font size made bigger */
+#filtertitle {
+    font-size: 30px;
+}
+/* button to apply filter
+ * bg color is darker
+ * padding puts space between text and edge of div
+ * border radius rounds it
+ * margin top puts space between filter text and button */
+#filterapply {
+    background-color: #07112e;
+    padding: 14px;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+/* makes font-size for these dropdowns bigger */
+details {
+    font-size: 20px;
+}
+/* class js applies to the filter when the button is pressed
+ * sets the animation's name, duration, easing function, and what will happen when it ends (stay there) */
+.animated {
+    animation-name: filtertoggle;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+/* an individual schedule
+ * background color is lighter
+ * flex-grow to adapt
+ * min-width so it will wrap if it gets too small
+ * very small margin to put a little space inbetween the schedules
+ * padding to put text in schedule away from the edge */
+.eventschedule {
+    background-color: #0c1b48;
+    flex-grow: 1;
+    min-width: 200px;
+    margin: 0.1vw;
+    padding: 1vw;
+}
+/* animation for filter: goes from no width (hidden), and no padding to an adaptive width and more padding, 
+ * more on the left to put it away from the left edge
+ *  padding is set to 0 right now because it would show the filter on the edge of the screen if it wasnt */
+@keyframes filtertoggle {
+    from {
+        width: 0;
+        padding: 0;
+        padding-left: 0;
+    }
+    to {
+        width: 20vw;
+        padding: 0.5vw;
+        padding-left: 1.5vw;
+    }
+}
+/* classes js applies for the animation direction. normal is opening up, reverse is closing up*/
+.normal {
+    animation-direction: normal;
+}
+.reverse {
+    animation-direction: reverse;
+}
+/* an item of the schedule, like a block
+ * item shrinks to be adaptive
+ * bg color is lighter, 
+ * padding and margin to set space around and between
+ * min width so if it gets too small, text will wrap */
+.item {
+    flex-shrink: 1;
+    background-color: #82a0ff;
+    display: flex;
+    padding: 1vw;
+    margin: 1vw;
+    min-width: 100px;
+}
+/* title and info, display flex and column to make text adaptive
+ * flex-grow to make it take up as much space as it can */
+.itemtext {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+/* title is made larger and heavier font */
+.itemtitle {
+    font-size: large;
+    font-weight: 600;
+}
+/* outer div that holds the item info. has display flex so the text in it can wrap without the whole schedule wrapping */
+.iteminfoContainer {
+    display: flex;
+}
+/* inner div for item info. has a set font size 
+ * flex grow and shrink to make adaptive
+ * initial width is set to 150 so the big schedule wraps after that point, otherwise it would wrap as soon as the text needed to */
+.iteminfoContent {
+    font-size: 15px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 150px;
+}
+/* buttons at bottom of screen, set adaptive height
+ * display flex to make buttons take up all available space and be horizontally aligned */
+#bottombuttons {
+    display: flex;
+    height: 5vh;
+}
+/* bottom button
+ * has a min width, but flex grow to take up more space
+ * set adaptive height and set margin to put space between edge of screen and it
+ * border radius to round, and background color to white to make it visible
+ * display flex to make text inside align vertically and horizontally
+ * justifies content to center, which is the text in the button */
+.button {
+    min-width: 100px;
+    flex-grow: 1;
+    height: 5vh;
+    margin: 1vw;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+/* when hovered, color turns to light blue */
+.button:hover {
+    background-color: #82a0ff;
+}
+/* text inside button, text is set to black to make visible
+ * font size is adaptive so it shrinks alongside the button
+ * aligns text inside to center. now the text is perfectly centered in the button*/
+.buttontext {
     color: black;
+    font-size: 2vh;
+    align-self: center;
 }
-#bigtitle{
-    font-size: 70px;
+
+/* custom scrollbar appearance to make it always visible
+ * width is set at 7px, border radius rounds it and color set to light blue */
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
 }
-.image{
-    border-radius: 30px;
-    margin: 0 25%;
-    width: 50%;
-}
-.sub-ingredient{
-    display: inline-block;
-    vertical-align: top;
-}
-.descpara{
-    width: 70%
-}
-.red{
-    color: red;
-}
-.brown{
-    color: brown;
-}
-.desc{
-    text-align: center
-}
-h1{
-    font-family: "Satisfy", cursive;
-}
-b{
-    font-weight: 800;
-}
-#smile{
-    height: 500px;
-}
-.btn{
-    margin-bottom: 2%
+::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background-color: #82a0ff;
 }

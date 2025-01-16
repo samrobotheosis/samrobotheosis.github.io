@@ -1,21 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Sam's Recipe Book</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Satisfy&display=swap" rel="stylesheet">
+        <title>Club Schedule</title>
+
+        <!--links to spreadsheets and script files-->
+        <link rel="stylesheet" href="styles.css" />
+        <script src="data.js"></script>
+        <script src="script.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet" />
     </head>
     <body>
-        <h1 id="bigtitle">Sam's Recipes</h1>
-        <ul>
-            <li><a href="recipes/cherrypie.html" class="biglink red">Sour Cherry Pie</a></li>
-            <li><a href="recipes/fishtacos.html" class="biglink brown">Grilled Fish Tacos</a></li>
-            <li><a href="recipes/smashburger.html" class="biglink">Simple Smash Burgers</a></li>
-        </ul>
-        <img id="smile" src="images/smile.webp">
+        <div id="page">
+            <!--everything except the bottom buttons-->
+            <div id="navbar"></div>
+            <!--blank--javascript will fill it -->
+
+            <h1 id="titlecard">Club Schedule for Today's Date</h1>
+            <!--big title at top-->
+
+            <div id="maincontent">
+                <div id="clubs">
+                    <div class="eventschedule" id="conference">
+                        <!--one individual schedule of the three-->
+                        <h3 class="scheduletitle">Clubs Period/Conference</h3>
+                        <!--title for the schedule-->
+                        <!-- EXAMPLE ITEM
+                        <div class="item">
+                            <div class="itemtext"> contains title and info paragraph, has flex-grow to take up most space
+                                <div class="itemtitle">Title</div>
+                                div class="iteminfoContainer"><div class="iteminfoContent">Info</div></div> item info is in 2 divs so display flex can allow it to wrap before it moves the big schedules down
+                            </div>
+                            <div class="itemroom">000 Room</div> Room number, takes up minimum space
+                        </div>
+                        -->
+                    </div>
+
+                    <div class="eventschedule" id="lunch">
+                        <!--same for the other two-->
+                        <h3 class="scheduletitle">Lunch</h3>
+                    </div>
+
+                    <div class="eventschedule" id="afterschool">
+                        <h3 class="scheduletitle">After School</h3>
+                    </div>
+                </div>
+
+                <div id="filter">
+                    <!--filter that pops up on filtertoggle()-->
+                    <h3 id="filtertitle">Filter</h3>
+
+                    <details class="filterclass" id="clubfilter">
+                        <!--blank--javascript will fill it -->
+                        <summary>Club</summary>
+                    </details>
+
+                    <details class="filterclass" id="typefilter">
+                        <!--detail tag is like a dropdown that has tags in it instead of using your browser-->
+                        <summary>Club type</summary>
+                        <!--title-->
+                        <input type="checkbox" id="club" class="typebox" checked />
+                        <!--checkbox input: default checked-->
+                        <label for="club">Club</label><br />
+                        <!--label for the checkbox-->
+                        <input type="checkbox" id="affinity" class="typebox" checked />
+                        <!--three more of these-->
+                        <label for="affinity">Affinity/Alliance Group</label><br />
+                        <input type="checkbox" id="team" class="typebox" checked />
+                        <label for="team">Team</label><br />
+                        <input type="checkbox" id="committee" class="typebox" checked />
+                        <label for="committee">Committee</label><br />
+                    </details>
+                    <div id="filterapply" onclick="reset()">Apply filter</div>
+                    <!--button at bottom of filter that does reset function-->
+                </div>
+            </div>
+        </div>
+        <div id="bottombuttons">
+            <!--buttons at bottom of page-->
+            <a href="https://forms.gle/pasgz7vFySrEHaso8" class="button">
+                <!--using an a tag so it can link to an external website-->
+                <div class="buttontext">Request an event</div>
+                <!--text inside is in another div so it can be centered vertically and horizontally-->
+            </a>
+            <div class="button" onclick="filtertoggle()"><div class="buttontext">Filter clubs</div></div>
+            <!--same with this one, but it does filtertoggle function-->
+        </div>
     </body>
 </html>
